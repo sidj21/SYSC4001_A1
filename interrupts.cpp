@@ -21,7 +21,8 @@ int main(int argc, char** argv) {
 
     /******************ADD YOUR VARIABLES HERE*************************/
     int current_time = 0;
-
+    int save_context_time = 10;
+    int iret = 1;
 
     /******************************************************************/
 
@@ -34,11 +35,15 @@ int main(int argc, char** argv) {
             execution += to_string(current_time) + ", " + to_string(duration_intr) + ", CPU execution\n";
             current_time += duration_intr;
         } else if (activity == "SYSCALL"){
-            
+            pair<string, int> output = intr_boilerplate(current_time, duration_intr, save_context_time, vectors);
+            execution += output.first;
+            current_time = output.second;
+
+            execution += to_string(current_time) + ", " + to_string(iret) + ", IRET\n";
+            current_time += iret;
         }
         else if (activity == "END_IO"){
-
-
+            
         }
         else{
             execution += "Error: Unknown activity " + activity + "\n"; 
