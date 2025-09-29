@@ -33,8 +33,15 @@ int main(int argc, char** argv) {
         if (activity == "CPU") {
             execution += to_string(current_time) + ", " + to_string(duration_intr) + ", CPU execution\n";
             current_time += duration_intr;
-        } else {
-            // other stuff here
+        } else if (activity == "SYSCALL"){
+            
+        }
+        else if (activity == "END_IO"){
+
+
+        }
+        else{
+            execution += "Error: Unknown activity " + activity + "\n"; 
         }
 
 
