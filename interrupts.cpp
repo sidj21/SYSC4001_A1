@@ -34,20 +34,25 @@ int main(int argc, char** argv) {
         if (activity == "CPU") {
             execution += to_string(current_time) + ", " + to_string(duration_intr) + ", CPU execution\n";
             current_time += duration_intr;
-        } else if (activity == "SYSCALL"){
+        } else {
             pair<string, int> output = intr_boilerplate(current_time, duration_intr, save_context_time, vectors);
             execution += output.first;
             current_time = output.second;
 
+            int isr_time = delays[duration_intr];
+            string specific_activity = (activity == "SYSCALL") ? "ISR body\n" : "I/O execution\n";
+
+            execution += to_string(current_time) + ", " + to_string(isr_time) + ", " + specific_activity;
+            current_time += isr_time;
+
             execution += to_string(current_time) + ", " + to_string(iret) + ", IRET\n";
             current_time += iret;
         }
-        else if (activity == "END_IO"){
-            
+        /*else if (activity == "END_IO"){    
         }
         else{
             execution += "Error: Unknown activity " + activity + "\n"; 
-        }
+        }*/
 
 
         /************************************************************************/
