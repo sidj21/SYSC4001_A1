@@ -34,25 +34,49 @@ int main(int argc, char** argv) {
         if (activity == "CPU") {
             execution += to_string(current_time) + ", " + to_string(duration_intr) + ", CPU execution\n";
             current_time += duration_intr;
-        } else {
+        } else if (activity == "SYSCALL") {
             pair<string, int> output = intr_boilerplate(current_time, duration_intr, save_context_time, vectors);
             execution += output.first;
             current_time = output.second;
 
-            int isr_time = delays[duration_intr];
-            string specific_activity = (activity == "SYSCALL") ? "ISR body\n" : "I/O execution\n";
+            int total_isr_time = delays[duration_intr];
+            
+            int first_activity = 40; // First activity always takes 40ms, all values in the device table are >= 40ms
+            execution += to_string(current_time) + ", " + to_string(first_activity) + ", run the device driver\n";
+            current_time += first_activity;
 
-            execution += to_string(current_time) + ", " + to_string(isr_time) + ", " + specific_activity;
-            current_time += isr_time;
+            int second_activity = rand() % (first_activity - total_isr_time);
+            execution += to_string(current_time) + ", " + to_string(second_activity) + ", transfer data from device to memory\n";
+            current_time += second_activity;
+
+            int third_activity = total_isr_time - first_activity - second_activity;
+            execution += to_string(current_time) + ", " + to_string(third_activity) + ", check for errors\n";
+            current_time += third_activity;
 
             execution += to_string(current_time) + ", " + to_string(iret) + ", IRET\n";
             current_time += iret;
         }
-        /*else if (activity == "END_IO"){    
+        else if (activity == "END_IO"){
+            pair<string, int> output = intr_boilerplate(current_time, duration_intr, save_context_time, vectors);
+            execution += output.first;
+            current_time = output.second;
+
+            int total_isr_time = delays[duration_intr];
+            
+            int first_activity = 40; // First activity always takes 40ms, all values in the device table are >= 40ms
+            execution += to_string(current_time) + ", " + to_string(first_activity) + ", ENDIO: run the ISR (device driver)\n";
+            current_time += first_activity;
+
+            int second_activity = total_isr_time - first_activity;
+            execution += to_string(current_time) + ", " + to_string(second_activity) + ", check device status\n";
+            current_time += second_activity;
+
+            execution += to_string(current_time) + ", " + to_string(iret) + ", IRET\n";
+            current_time += iret;
         }
         else{
-            execution += "Error: Unknown activity " + activity + "\n"; 
-        }*/
+            execution += to_string(current_time) + ", 0 " + activity + "\n"; 
+        }
 
 
         /************************************************************************/
