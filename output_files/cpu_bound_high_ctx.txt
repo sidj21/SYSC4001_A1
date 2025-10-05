@@ -1,0 +1,36 @@
+0, 200, CPU execution
+200, 180, CPU execution
+380, 1, switch to kernel mode
+381, 30, context saved
+411, 1, find vector 5 in memory position 0x000A
+412, 1, load address 0X048B into the PC
+413, 40, run the device driver
+453, 41, transfer data from device to memory
+494, 130, check for errors
+624, 1, IRET
+625, 1, switch to kernel mode
+626, 30, context saved
+656, 1, find vector 5 in memory position 0x000A
+657, 1, load address 0X048B into the PC
+658, 211, ENDIO: run the ISR (device driver)
+869, 1, IRET
+870, 250, CPU execution
+1120, 300, CPU execution
+1420, 220, CPU execution
+1640, 1, switch to kernel mode
+1641, 30, context saved
+1671, 1, find vector 9 in memory position 0x0012
+1672, 1, load address 0X036C into the PC
+1673, 40, run the device driver
+1713, 23, transfer data from device to memory
+1736, 93, check for errors
+1829, 1, IRET
+1830, 1, switch to kernel mode
+1831, 30, context saved
+1861, 1, find vector 9 in memory position 0x0012
+1862, 1, load address 0X036C into the PC
+1863, 156, ENDIO: run the ISR (device driver)
+2019, 1, IRET
+2020, 260, CPU execution
+2280, 210, CPU execution
+2490, 240, CPU execution
