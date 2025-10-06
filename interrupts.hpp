@@ -15,7 +15,7 @@
 #define ADDR_BASE   0
 #define VECTOR_SIZE 2
 
-#define CPU_SPEED   200
+#define CPU_SPEED   100
 #define MEM_LIMIT   1
 
 /**
