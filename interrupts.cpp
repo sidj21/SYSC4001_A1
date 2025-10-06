@@ -23,7 +23,9 @@ int main(int argc, char** argv) {
     int current_time = 0;
     int save_context_time = 20;
     int iret = 1;
+
     int first_activity = 40; // First ISR activity for SYSCALL takes 40ms, all values in the device table are >= 40ms
+    int delay_for_isr = 0;
 
     /******************************************************************/
 
@@ -42,16 +44,17 @@ int main(int argc, char** argv) {
 
             int total_isr_time = delays[duration_intr];
             
-            execution += to_string(current_time) + ", " + to_string(first_activity) + ", run the device driver\n";
+            execution += to_string(current_time) + ", " + to_string(first_activity) + ", SYSCALL: run the device driver\n";
             current_time += first_activity;
 
-            int second_activity = rand() % (first_activity - total_isr_time);
+            int second_activity = total_isr_time - first_activity;
             execution += to_string(current_time) + ", " + to_string(second_activity) + ", transfer data from device to memory\n";
             current_time += second_activity;
 
-            int third_activity = total_isr_time - first_activity - second_activity;
-            execution += to_string(current_time) + ", " + to_string(third_activity) + ", check for errors\n";
-            current_time += third_activity;
+            if (delay_for_isr > 0) {
+                execution += to_string(current_time) + ", " + to_string(delay_for_isr) + ", SYSCALL DELAY: check for errors\n";
+                current_time += delay_for_isr;
+            }
 
             execution += to_string(current_time) + ", " + to_string(iret) + ", IRET\n";
             current_time += iret;
