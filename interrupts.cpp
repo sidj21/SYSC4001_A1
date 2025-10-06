@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     int iret = 1;
 
     int first_activity = 40; // First ISR activity for SYSCALL takes 40ms, all values in the device table are >= 40ms
-    int delay_for_isr = 0;
+    int delay_for_isr = 40; 
 
     /******************************************************************/
 
@@ -35,8 +35,9 @@ int main(int argc, char** argv) {
 
         /******************ADD YOUR SIMULATION CODE HERE*************************/
         if (activity == "CPU") {
-            execution += to_string(current_time) + ", " + to_string(duration_intr) + ", CPU execution\n";
-            current_time += duration_intr;
+            int execution_time = duration_intr / (CPU_SPEED / 100); //to account for CPU speed (will be tested for 100, 200, 300)
+            execution += to_string(current_time) + ", " + to_string(execution_time) + ", CPU execution\n";
+            current_time += execution_time;
         } else if (activity == "SYSCALL") {
             pair<string, int> output = intr_boilerplate(current_time, duration_intr, save_context_time, vectors);
             execution += output.first;
