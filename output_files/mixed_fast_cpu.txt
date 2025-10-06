@@ -1,0 +1,61 @@
+0, 25, CPU execution
+25, 1, switch to kernel mode
+26, 10, context saved
+36, 1, find vector 14 in memory position 0x001C
+37, 1, load address 0X0165 into the PC
+38, 40, SYSCALL: run the device driver
+78, 416, transfer data from device to memory
+494, 1, IRET
+495, 20, CPU execution
+515, 1, switch to kernel mode
+516, 10, context saved
+526, 1, find vector 14 in memory position 0x001C
+527, 1, load address 0X0165 into the PC
+528, 456, ENDIO: run the ISR (device driver)
+984, 1, IRET
+985, 30, CPU execution
+1015, 1, switch to kernel mode
+1016, 10, context saved
+1026, 1, find vector 19 in memory position 0x0026
+1027, 1, load address 0X0765 into the PC
+1028, 40, SYSCALL: run the device driver
+1068, 612, transfer data from device to memory
+1680, 1, IRET
+1681, 15, CPU execution
+1696, 1, switch to kernel mode
+1697, 10, context saved
+1707, 1, find vector 19 in memory position 0x0026
+1708, 1, load address 0X0765 into the PC
+1709, 652, ENDIO: run the ISR (device driver)
+2361, 1, IRET
+2362, 35, CPU execution
+2397, 1, switch to kernel mode
+2398, 10, context saved
+2408, 1, find vector 8 in memory position 0x0010
+2409, 1, load address 0X06EF into the PC
+2410, 40, SYSCALL: run the device driver
+2450, 960, transfer data from device to memory
+3410, 1, IRET
+3411, 17, CPU execution
+3428, 1, switch to kernel mode
+3429, 10, context saved
+3439, 1, find vector 8 in memory position 0x0010
+3440, 1, load address 0X06EF into the PC
+3441, 1000, ENDIO: run the ISR (device driver)
+4441, 1, IRET
+4442, 27, CPU execution
+4469, 1, switch to kernel mode
+4470, 10, context saved
+4480, 1, find vector 14 in memory position 0x001C
+4481, 1, load address 0X0165 into the PC
+4482, 40, SYSCALL: run the device driver
+4522, 416, transfer data from device to memory
+4938, 1, IRET
+4939, 22, CPU execution
+4961, 1, switch to kernel mode
+4962, 10, context saved
+4972, 1, find vector 14 in memory position 0x001C
+4973, 1, load address 0X0165 into the PC
+4974, 456, ENDIO: run the ISR (device driver)
+5430, 1, IRET
+5431, 32, CPU execution
