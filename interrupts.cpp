@@ -21,11 +21,11 @@ int main(int argc, char** argv) {
 
     /******************ADD YOUR VARIABLES HERE*************************/
     int current_time = 0;
-    int save_context_time = 20;
+    int save_context_time = 10;
     int iret = 1;
 
     int first_activity = 40; // First ISR activity for SYSCALL takes 40ms, all values in the device table are >= 40ms
-    int delay_for_isr = 40; 
+    int delay_for_isr = 0; // change this to add a delay to the ISR
 
     /******************************************************************/
 
